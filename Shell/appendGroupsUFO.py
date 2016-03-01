@@ -42,6 +42,10 @@ def main():
 			for name, content in groups.items():
 				if name not in font.groups:
 					font.groups[name] = content
+				else:
+					for g in content:
+						if g not in font.groups[name]:
+							font.groups[name].append(g)
 			font.save()
 		except:
 			print "Errors during processing."
