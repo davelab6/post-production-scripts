@@ -8,6 +8,7 @@ roboGenerateFont.py
 import os, os.path, sys, optparse, time
 from subprocess import call
 from pipes import quote
+from AppKit import *
 
 __version__ = "2.10"
 __copyright__ = "Copyright (c) 2015 by David Brezina"
@@ -34,6 +35,9 @@ def parseOptions():
 	parser.add_option("-a", "--autohint",
 		action="store_true", dest="autohint", default=False,
 		help="autohint")
+	parser.add_option("-k", "--de-kern",
+		action="store_true", dest="dekern", default=False,
+		help="clear all kerning before generating the font, UFO stays unchanged.")
 	parser.add_option("-r", "--releaseMode",
 		action="store_true", dest="releaseMode", default=False,
 		help="release mode")
@@ -41,8 +45,6 @@ def parseOptions():
 		action="store", dest="outpath", type="string", default="",
 		help="output everything to this folder instead of the current working folder")
 	return parser.parse_args()
-
-from AppKit import *
 
 def runRoboFont(code = "", script = "", font = ""):
 	"""
@@ -81,12 +83,10 @@ def main():
 	options.formats = options.formats.split(",")
 
 	if args > 0:
-		try:
-			code = "inpath = '%s'\n" % os.path.realpath(args[0])
-			code += "f = OpenFont(inpath, showUI=False)\n" # opens font without GUI, faster
-		except:
-			print "Cannot open the font/UFO provided. Use -h for help."
-			return
+		code = "inpath = '%s'\n" % os.path.realpath(args[0])
+		code += "f = OpenFont(inpath, showUI=False)\n" # opens font without GUI, faster
+		if options.dekern:
+			code += "f.kerning.clear()\n"
 		if options.outpath:
 			code += "outpath = '%s'\n" % os.path.join(os.path.realpath(options.outpath), args[0])
 		else:
