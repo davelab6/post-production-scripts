@@ -5,7 +5,7 @@ This folder contains publicly available command-line tools (mostly in python) us
 
 ### Command-line tools
 
-- `appendGroupsUFO.py` appends a UFO from a text file
+- `addGroupsUFO.py` adds groups to a UFO from a Python `dict` saved in a text file
 - `roboGenerateFont.py` uses RoboFont from command line to generate TTFs, OTFs etc. (requires RoboFont and AppKit, see the top of the script for requirements and installation suggestion)
 
 

@@ -77,7 +77,7 @@ def runRoboFont(code = "", script = "", font = ""):
 	    dnc = NSDistributedNotificationCenter.defaultCenter()
 	    dnc.postNotificationName_object_userInfo_deliverImmediately_("com.typemytype.robofont.remote", None, options, True)
 
-def main():
+def run():
 	(options, args) = parseOptions()
 
 	options.formats = options.formats.split(",")
@@ -104,4 +104,4 @@ def main():
 		runRoboFont(code=code)
 
 if __name__ == "__main__":
-	sys.exit(main())
+	sys.exit(run())

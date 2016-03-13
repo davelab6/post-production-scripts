@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-appendGroupsUFO.py
+addGroupsUFO.py
 """
 
 import os, sys, optparse
@@ -9,7 +9,7 @@ from defcon import Font
 
 __version__ = "1.00"
 __copyright__ = "Copyright (c) 2016 by David Brezina"
-__description__ = """Appends groups from a text file to UFO."""
+__description__ = """Adds groups from a text file to UFO."""
 __requirements__ = "Requires Python 2.5 or higher and defcon."
 
 def parseOptions():
@@ -24,7 +24,7 @@ def parseOptions():
 		help="path to a file with groups to add (represented as python dict object)")
 	return parser.parse_args()
 
-def main():
+def run():
 	(options, args) = parseOptions()
 
 	if len(args) >= 1:
@@ -53,4 +53,4 @@ def main():
 		print "Add -h for help"
 
 if __name__ == "__main__":
-	sys.exit(main())
+	sys.exit(run())
